@@ -26,7 +26,7 @@ export default function PaginatedTable() {
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedUID(deviceUID);
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(handler); // Clear timeout if input changes before 3 seconds
   }, [deviceUID]);
@@ -112,7 +112,16 @@ export default function PaginatedTable() {
               data?.map((item, index) => (
                 <tr key={index}>
                   <td>{item.deviceUID}</td>
-                  <td>{new Date(item.eventTimeStamp).toISOString().replace("T", " ").substring(0, 19)}</td>
+                  <td>{new Date(item.eventTimeStamp).toLocaleString("en-NG", {
+                        timeZone: "Africa/Lagos",
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                        hour12: false, // Use 24-hour format
+                      }).replace(",", "")}</td>
                   <td>{item?.frequencyAvg}</td>
                   <td>{item?.powerFactorAvg}</td>
                   <td>{item?.currentLine1}</td>
