@@ -55,6 +55,19 @@
   tbody tr:hover {
     background: #333;
   }
+
+  .filters {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .filter-label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+     padding: 20px;
+  }
   
   /* No data message */
   .no-data {
