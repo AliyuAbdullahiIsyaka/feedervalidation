@@ -93,6 +93,16 @@
     color: white;
     transition: 0.3s;
   }
+
+  .fetch-button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background: green;
+    color: white;
+    transition: 0.3s;
+  }
   
   .page-button:hover {
     background: #0056b3;
