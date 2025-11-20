@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
+import { useEffect } from "react";
 
 const fetchData = async (deviceUID, startDate, endDate, pageNumber, pageSize) => {
   const url = new URL("https://feedercomplianceprodapi.azurewebsites.net/api/v1/Energy/validation-energy-data"); 
@@ -22,6 +23,12 @@ export default function PaginatedTable() {
   const [endDate, setEndDate] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const itemsPerPage = 10;
+
+  useEffect(() => {
+    if (data.length > 0) {
+      handleFetchData();
+    }
+  }, [currentPage]);
 
   const handleFetchData = async () => {
     setIsLoading(true);
@@ -123,17 +130,20 @@ export default function PaginatedTable() {
       <div className="pagination">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
+          disabled={currentPage === 1 || isLoading} // 👈 include loading state
           className="page-button"
         >
-          Prev
+          {isLoading ? <FaSpinner className="spinner" /> : "Prev"}
         </button>
+
         <span>Page {currentPage}</span>
+
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
+          disabled={isLoading} // 👈 disable during loading
           className="page-button"
         >
-          Next
+          {isLoading ? <FaSpinner className="spinner" /> : "Next"}
         </button>
       </div>
     </div>
