@@ -82,7 +82,7 @@ export default function PaginatedTable() {
           <table>
             <thead>
               <tr>
-                {["Device UID", "Timestamp", "Frequency", "Power Factor", "Current L1", "Current L2", "Current L3", "Voltage L1", "Voltage L2", "Voltage L3", "Power", "Reactive Power", "Apparent Power", "Energy Total", "Status"].map((header) => (
+                {["Device UID", "Timestamp", "Frequency", "Power Factor", "Current L1", "Current L2", "Current L3", "Voltage L1", "Voltage L2", "Voltage L3", "Power", "Reactive Power", "Apparent Power", "Energy Total", "Status", "Voltage Status"].map((header) => (
                   <th key={header}>{header}</th>
                 ))}
               </tr>
@@ -115,6 +115,7 @@ export default function PaginatedTable() {
                     <td>{item?.apparentPowerInst}</td>
                     <td>{item?.activeEnergyTotal}</td>
                     <td>{item?.status}</td>
+                    <td>{item?.statusByVoltage}</td>
                   </tr>
                 ))
               ) : (
